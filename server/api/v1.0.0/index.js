@@ -1,5 +1,6 @@
 'use strict';
 
+import 'source-map-support/register';
 import express from 'express';
 
 let router = express.Router();

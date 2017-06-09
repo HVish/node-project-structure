@@ -1,5 +1,6 @@
 'use strict';
 
+import 'source-map-support/register';
 import express from 'express';
 import config from './config';
 import api from './api';
@@ -21,4 +22,10 @@ app.listen(config.local.port, error => {
         console.log(`URL: http://localhost:${config.local.port}`);
         console.log(`Environment: ${config.local.env}`);
     }
+});
+
+process.on('uncaughtException', function(err) {
+    console.error(err);
+    console.log("handle the error");
+    process.exit(1);
 });
