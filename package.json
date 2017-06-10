@@ -2,11 +2,13 @@
   "name": "node-project-structure",
   "version": "1.0.0",
   "description": "",
-  "main": "build/index.js",
+  "main": "build/index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "build/index.js",
-    "start-dev": "gulp"
+    "start": "build/index",
+    "start-dev": "gulp",
+    "admin": "MODULE=admin node build/index",
+    "client": "MODULE=client node build/index"
   },
   "keywords": [],
   "author": "Vishnu Singh",

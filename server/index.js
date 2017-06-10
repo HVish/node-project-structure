@@ -1,31 +1,10 @@
 'use strict';
 
 import 'source-map-support/register';
-import express from 'express';
 import config from './config';
-import api from './api';
 
-const app = express();
-
-app.get('/', (req, res) => {
-    throw new Error("dummy error");
-    res.send("<h1>Hello World</h1>");
-});
-
-app.use('/api', api);
-
-app.listen(config.local.port, error => {
-    if (error) {
-        console.error(error);
-    } else {
-        console.log('Server started:');
-        console.log(`URL: http://localhost:${config.local.port}`);
-        console.log(`Environment: ${config.local.env}`);
-    }
-});
-
-process.on('uncaughtException', function(err) {
-    console.error(err);
-    console.log("handle the error");
-    process.exit(1);
-});
+if (config.local.module == "admin") {
+    require('./admin');
+} else {
+    require('./client');
+}

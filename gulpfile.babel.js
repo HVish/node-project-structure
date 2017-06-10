@@ -6,7 +6,7 @@ import nodemon from 'gulp-nodemon';
 import babel from 'gulp-babel';
 import sourceMaps from 'gulp-sourcemaps';
 
-gulp.task('js:babel', () => {
+gulp.task('js:server', () => {
 
     console.log("transpiling the code...");
 
@@ -22,12 +22,18 @@ gulp.task('js:babel', () => {
     return stream;
 });
 
-gulp.task('watch', ['js:babel'], () => {
+gulp.task('watch', ['js:server'], () => {
 
+    let conf = config.local[config.local.module];
     let stream = nodemon({
         script: 'build/',
         watch: 'server',
-        tasks: ['js:babel']
+        tasks: ['js:server'],
+        env: {
+            'MODULE': config.local.module,
+            'NODE_ENV': conf.env,
+            'PORT': conf.port
+        }
     });
 
     return stream;
